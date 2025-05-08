@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+
+# WhatsApp sessions & cache
+.wwebjs_auth/
+.wwebjs_cache/
+session.txt
+qr.png
+
+# Environment config
+.env
+
+# Tesseract trained data (jika tidak mau upload ke repo)
+*.traineddata
+
+# Logs & debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated
+.DS_Store
+Thumbs.db
