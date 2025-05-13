@@ -21,3 +21,9 @@ yarn-error.log*
 # OS generated
 .DS_Store
 Thumbs.db
+
+# Dev code
+test.js
+user_interactions.db 
+package-lock*
+session.txt
