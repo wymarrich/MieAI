@@ -25,5 +25,5 @@ Thumbs.db
 # Dev code
 test.js
 user_interactions.db 
-package-lock*
+package-lock.json
 session.txt

@@ -26,9 +26,9 @@ const STOREINFO = {
 *PENTING* 
 > Ada salah order? Tenang ga lgsg prosses, cek kembali psnan lalu ikuti cara berikut:
 
-1. Jika pesanan sudah sesuai balas spesifik chat ini *ok* / *OK*. 
-2. Jika belum sesuai mohon kirim chat pake format seperti contoh di bawah.
-3. Jika kamu beli langsung lewat mimin, tapi ingin diantar OJOL, balas spesifik chat ini dengan kata *ya* / *YA*.
+1. Balas *ok* / *OK* kalau pesanan udh sesuai. 
+2. Jika belum sesuai mohon chat seperti contoh format di bawah.
+3. Ingin di-ojolin dari sini? balas *ya* / *YA*.
 `,
     sosmed: `
 Terimakasih sudah membeli Mie Ayam Pak Dul 🤗
@@ -46,10 +46,10 @@ silahkan datang ke lokasi atau tunggu driver ojol ke rumahmu.
 *CONTOH FORMAT CARA PESEN*
 
 mau beli :
-- mie ayam ori 2 (catatan bila perlu)
-- mie ayam ceker 1 (banyakin sawi)
-- es jeruk 3
-- dll
+-mie ayam ori 2 (masukan catatan disini)
+-mie ayam ceker 1 (banyakin sawi)
+-es jeruk 3
+-dll
 
 *Atau kirimkan screenshot pesanan aja juga bisa, kalo kamu driver ojol!*
     `
