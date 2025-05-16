@@ -5,8 +5,21 @@ const { ambilBagianPesanan } = require('./modules/utils');
 const { handleMessage } = require('./modules/handleMessage');
 const { checkUserPreviousChat, storeUserNumber } = require('./modules/database');
 
+const repliedMessageIds = new Set();
+
+
 client.on('message', async message => {
-    if (message.from === "status@broadcast") return;
+    if (
+        message.from === "status@broadcast" ||
+        message.type !== "chat" ||
+        message.id.fromMe ||
+        (typeof message.ack !== 'undefined' && message.ack === -1)
+    ) return;
+
+    // Cegah duplikasi balasan
+    if (repliedMessageIds.has(message.id.id)) return;
+    repliedMessageIds.add(message.id.id);
+    setTimeout(() => repliedMessageIds.delete(message.id.id), 5000);
 
     const previousChat = await checkUserPreviousChat(message.from);
     await storeUserNumber(message.from, message.body);
