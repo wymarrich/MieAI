@@ -9,12 +9,14 @@ const repliedMessageIds = new Set();
 
 
 client.on('message', async message => {
+
     if (
         message.from === "status@broadcast" ||
-        message.type !== "chat" ||
         message.id.fromMe ||
         (typeof message.ack !== 'undefined' && message.ack === -1)
     ) return;
+
+    if (!["chat", "image"].includes(message.type)) return;
 
     // Cegah duplikasi balasan
     if (repliedMessageIds.has(message.id.id)) return;
