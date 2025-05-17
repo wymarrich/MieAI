@@ -17,6 +17,7 @@ Daftar menu dan harga:
 - Es teh: 3.000
 - Es jeruk: 3.000
 `;
+const readMoreTrigger = "\u200B".repeat(500); 
 
 const STOREINFO = {
     soldOut: process.env.SOLD === 'true',
@@ -41,9 +42,10 @@ silahkan datang ke lokasi atau tunggu driver ojol ke rumahmu.
 - 🤖 MieAI: +6288808620330
 `,
     halloMsg: `Halo! Selamat datang di Mie Ayam Pak Dul Bumiayu! Ada yang bisa saya bantu? 🤖`,
-    caraPesen: `
-
-*CONTOH FORMAT CARA PESEN*
+    
+    caraPesen: 
+      readMoreTrigger + 
+`*CONTOH FORMAT CARA PESEN*
 
 mau beli :
 -mie ayam ori 2 (masukan catatan disini)

@@ -4,7 +4,7 @@ const axios = require('axios');
 const { STOREINFO, MENU_DATA } = require('./storeinfo');
 
 async function buatSummaryDenganGPT(pesan) {
-    console.log(`pesanan masuk summary ${pesan}`);
+    console.log(`Final pesanan to gpt\n${pesan}`);
     const prompt = `
 """ 
 Abaikan pesan sebelum nya,  ini ada pesanan baru lagi, Kamu adalah *MieAI🤖*,  asisten digital resmi dari restoran *Mie Ayam Pak Dul Bumiayu*. Tugasmu adalah membalas pesan pelanggan dengan sopan dan santai seperti admin sosial media kuliner profesional, serta mengenali dan memproses pesanan mie ayam secara otomatis dari isi pesan pelanggan.

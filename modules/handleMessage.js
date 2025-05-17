@@ -3,6 +3,7 @@ const { STOREINFO } = require('./storeinfo');
 const { lastBotMessages } = require('./client');
 const { normalizeText, extractTextFromImage } = require('./utils');
 const { buatSummaryDenganGPT } = require('./gpt');
+const { ambilBagianPesanan } = require('./utils');
 
 async function handleMessage(message, previousChat) {
     let cleanedText = '';
@@ -31,42 +32,26 @@ async function handleMessage(message, previousChat) {
         cleanedText = normalizeText(extractedText);
     }
 
-    console.log(`full pesanan: \n ${cleanedText}`);
-    const response = await buatSummaryDenganGPT(cleanedText);
+    const isCleanedEmpty = cleanedText.trim() === "";
+    const extraInfo = previousChat ? "" : STOREINFO.caraPesen;
+    const hello = STOREINFO.halloMsg + extraInfo;
+
+    const response = isCleanedEmpty ? hello : await buatSummaryDenganGPT(cleanedText);
+
 
     console.log(`response with trim: \n ${response}`);
     console.log(`\n\n`);
 
-    const isMasuk = response && response.includes('MASUK');
-
     const allowedKeywords = ['mie', 'ayam', 'balungan', 'ceker', 'pangsit', 'ori', 'es teh', 'es jeruk', 'teh', 'jeruk', 'mi ayam'];
     const containsAllowedKeyword = allowedKeywords.some(keyword => cleanedText.toLocaleLowerCase().includes(keyword));
-    const replyText =  response.replace("---------------", "").replace("*PESANAN MASUK!*", "*PESANAN MASUK!* (kuah, saos, sambal pasti pisah!)") + "\n" + STOREINFO.isPenting + STOREINFO.caraPesen;
-
-    const hasSentBefore = lastBotMessages.get(message.from) === replyText;
-    const isCleanedEmpty = cleanedText.trim() === "";
-    const extraInfo = previousChat ? "" : STOREINFO.caraPesen;
-
-
-    if (isMasuk && containsAllowedKeyword && !hasSentBefore) {
-        lastBotMessages.set(message.from, replyText);
-
-        console.log('bot balas lewat isMasuk && containsAllowedKeyword && !hasSentBefore'+  replyText)
-        return message.reply(replyText);
-    } else if (isMasuk && isCleanedEmpty) {
-        const hello = STOREINFO.halloMsg + extraInfo;
-        lastBotMessages.set(message.from, hello);
-        console.log('bot balas lewat isMasuk && isCleanedEmpty'+  hello)
-
-        return message.reply(hello);
-    } else {
-
-        const fallback = response + "\n\n" + extraInfo;
-        console.log('bot balas lewat fallback'+  fallback)
-
-        lastBotMessages.set(message.from, fallback);
-        return message.reply(fallback);
-    }
+    const isMasuk = response && response.includes('MASUK');
+    const singkatanResponse = ambilBagianPesanan(response);
+    const fullFromgpt = singkatanResponse?.replace("---------------", "").replace("*PESANAN MASUK!*", "*PESANAN MASUK!* (kuah, saos, sambal pasti pisah!)") + "\n" + STOREINFO.isPenting + "\n" + STOREINFO.caraPesen;
+    const replyText = (isMasuk && containsAllowedKeyword) ? fullFromgpt :  response;
+    lastBotMessages.set(message.from, replyText);
+    return message.reply(replyText);
+    
+   
 }
 
 module.exports = { handleMessage };
