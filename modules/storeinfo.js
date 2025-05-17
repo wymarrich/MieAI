@@ -28,7 +28,7 @@ const STOREINFO = {
 > Ada salah order? Tenang ga lgsg prosses, cek kembali psnan lalu ikuti cara berikut:
 
 1. Balas *ok* / *OK* kalau pesanan udh sesuai. 
-2. Jika belum sesuai mohon chat seperti contoh format di bawah.
+2. Jika belum sesuai klik Baca selengkapnya buat liat cara pesan.
 3. Ingin di-ojolin dari sini? balas *ya* / *YA*.
 `,
     sosmed: `
